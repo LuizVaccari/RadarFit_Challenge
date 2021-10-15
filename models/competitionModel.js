@@ -21,7 +21,22 @@ const update = async (competicao) => {
   return competition.status;
 };
 
+const getAll = async () => {
+  const db = await connection();
+  return db.collection('competição tempo1').find().toArray();
+};
+
+const checkStatus = async (competicao) => {
+  const db = await connection();
+  const competition = await db.collection(competicao)
+    .findOne({ $or: [ { status: 'criada' }, { status: 'finalizada' } ] });
+  if(competition) return competition.status;
+  return null;
+};
+
 module.exports = {
   create,
-  update
+  update,
+  getAll,
+  checkStatus
 };

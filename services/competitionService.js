@@ -14,6 +14,11 @@ const validateEntry = (competicao) => {
 const create = async (competicao) => {
   const invalidEntry = validateEntry(competicao);
   if (invalidEntry) return invalidEntry;
+
+  const createdCompetitionError = { err: { code: 400, message: 'Competição já criada.' } };
+  const checkStatus = await competitionModel.checkStatus(competicao);
+  if(checkStatus) return createdCompetitionError;
+
   const insertedCompetition = await competitionModel.create(competicao);
   return { competitionStatus: insertedCompetition, status: HTTP_CREATED_STATUS };
 };
@@ -23,8 +28,13 @@ const update = async (competicao) => {
   return { updatedSituation: situation, status: HTTP_OK_STATUS };
 };
 
+const getAll = async () => {
+  const recipes = await competitionModel.getAll();
+  return { recipesList: recipes, status: HTTP_OK_STATUS };
+};
 
 module.exports = {
   create,
-  update
+  update,
+  getAll
 };
