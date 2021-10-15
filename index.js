@@ -13,7 +13,6 @@ const port = process.env.PORT;
 
 app.post('/competition', competitionController.create);
 app.put('/competition', competitionController.update);
-app.get('/competition', competitionController.getAll);
 
 app.post('/rank', rankController.create);
 app.get('/rank', rankController.getRank);

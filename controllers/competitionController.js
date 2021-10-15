@@ -17,13 +17,7 @@ const update = async (req, res) => {
   res.status(status).json({ result: `A ${competicao} foi ${updatedSituation}` });
 };
 
-const getAll = async (_req, res) => {
-  const { status, recipesList } = await competitionService.getAll();
-  res.status(status).json(recipesList);
-};
-
 module.exports = {
   create,
   update,
-  getAll,
 };

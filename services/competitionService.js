@@ -28,13 +28,7 @@ const update = async (competicao) => {
   return { updatedSituation: situation, status: HTTP_OK_STATUS };
 };
 
-const getAll = async () => {
-  const recipes = await competitionModel.getAll();
-  return { recipesList: recipes, status: HTTP_OK_STATUS };
-};
-
 module.exports = {
   create,
   update,
-  getAll
 };

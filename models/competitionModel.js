@@ -21,11 +21,6 @@ const update = async (competicao) => {
   return competition.status;
 };
 
-const getAll = async () => {
-  const db = await connection();
-  return db.collection('competição tempo1').find().toArray();
-};
-
 const checkStatus = async (competicao) => {
   const db = await connection();
   const competition = await db.collection(competicao)
@@ -37,6 +32,5 @@ const checkStatus = async (competicao) => {
 module.exports = {
   create,
   update,
-  getAll,
   checkStatus
 };
